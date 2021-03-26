@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+html {
+  overflow-y: scroll;
+  height: 100%;
+  background: #999cff;
+  font-family: "Times New Roman", Times, serif;
+}
