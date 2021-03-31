@@ -9,8 +9,8 @@ function randomNumberInSpecificRange(max: number) {
   return rando;
 }
 
-export function IdeaDisplay() {
-  const ideaListData = IdeaData();
+export function IdeaDisplay(props: { ideaData: any; }) {
+  const ideaListData = props.ideaData
   const [galleryView, setGalleryView] = useState(false);
   const [randomIdeaIndex, setRandomIdeaIndex] = useState(
     randomNumberInSpecificRange(ideaListData.length)
@@ -120,3 +120,7 @@ export function IdeaDisplay() {
     </div>
   );
 }
+
+IdeaDisplay.defaultProps = {
+ ideaData:IdeaData()
+};

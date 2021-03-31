@@ -3,9 +3,11 @@ import {IdeaDisplay} from "./Pages/IdeaDisplay"
 import Firebase from "firebase"
 import config from "./config"
 import {SampleIdea} from "./Data/Utils"
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
 
 function App() {
+  const [masterIdeaList, setMasterIdeaList] = useState([]);
+  const [isBusy, setBusy] = useState(true);
   const sampleIdeaData = SampleIdea()
   if (!Firebase.apps.length) {
     Firebase.initializeApp(config)
@@ -13,9 +15,21 @@ function App() {
   
 
   useEffect(() => {
-    console.log(sampleIdeaData)
-    writeIdeaData()
+    readIdeaData()
   }, []);
+
+  function readIdeaData(){
+    Firebase
+      .database()
+      .ref("/ideas")
+      .on("value", snapshot => {
+        if (snapshot && snapshot.exists()) {
+          console.log("SNAPPY")
+          setMasterIdeaList(snapshot.val())
+          console.log(masterIdeaList)
+          setBusy(false)
+        }})
+  }
 
   function writeIdeaData() {
     Firebase.database()
@@ -24,9 +38,17 @@ function App() {
     console.log("DATA SAVED");
   };
 
+  function addIdeaToList() {
+    Firebase.database()
+      .ref("/ideas").push()
+      .set(sampleIdeaData);
+    console.log("DATA SAVED");
+  };
+
   return (
     <div className="App">
-      <IdeaDisplay />
+       {isBusy ?
+      <div/> : <IdeaDisplay ideaData={masterIdeaList}/>}
     </div>
   );
 }
