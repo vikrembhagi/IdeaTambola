@@ -25,7 +25,7 @@ export function CustomButton(props: { toggled: boolean; toggledColor: string; ho
     display: "flexbox",
     backgroundColor: getButtonBg(),
     width: 120,
-    height: 20,
+    height: 24,
     padding: 8,
     borderRadius: 5,
     color: props.fontColor,

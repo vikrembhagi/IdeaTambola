@@ -21,7 +21,10 @@ export function IdeaDeck(props: { ideaList: { content: {
   return (
     <div style={IdeaDeckStyle}>
       {props.ideaList.map((item, index) => {
-        const animFactor = index;
+        let animFactor = index;
+        if(animFactor>3){
+          animFactor = 2
+        }
         return (
           <IdeaCard
             content={item.content}

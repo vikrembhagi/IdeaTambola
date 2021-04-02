@@ -19,12 +19,7 @@ export function IdeaDisplay(props: { ideaData: any; }) {
   //Change active view - Random || Deck
   function activeViewToggle(toggledButtonName: string) {
     if (toggledButtonName == "gallery") {
-      setGalleryView(!galleryView);
-      console.log(galleryView);
-    }
-
-    if (toggledButtonName == "randomIdea") {
-      console.log(toggledButtonName);
+      setGalleryView(!galleryView); 
     }
   }
 
@@ -37,7 +32,7 @@ export function IdeaDisplay(props: { ideaData: any; }) {
     setRandomIdeaIndex(newRando);
   }
 
-  const appContainer = {
+  const ideasContainer = {
     display: "flexbox",
     height: "100%",
     width: "100%",
@@ -47,13 +42,6 @@ export function IdeaDisplay(props: { ideaData: any; }) {
 
   const cardStackContainer = {
     height: "100%"
-  };
-
-  const appHeader = {
-    display: "flex",
-    fontSize: "48px",
-    justifyContent: "center",
-    marginBottom: "48px"
   };
 
   const ideaCount = {
@@ -84,10 +72,9 @@ export function IdeaDisplay(props: { ideaData: any; }) {
   };
 
   return (
-    <div style={appContainer}>
-      <div style={appHeader}>Idea Tambola</div>
+    <div style={ideasContainer}>
       <div style={buttonHeader}>
-        <div style={ideaCount}>{ideaListData.length} amazing ideas</div>
+        <div style={ideaCount}>{ideaListData.length} amazing ideas in database</div>
         <CustomButton
           text="Show All"
           id="gallery"
@@ -101,7 +88,7 @@ export function IdeaDisplay(props: { ideaData: any; }) {
         <div style={randomCardContainer}>
           {" "}
           <div style={randomTriggerText} onClick={newRandomIdea}>
-            Tap for another rando
+            Here's a random idea
           </div>
           <IdeaCard
             content={ideaListData[randomIdeaIndex].content}
