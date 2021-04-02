@@ -28,6 +28,25 @@
   color: #61dafb;
 }
 
+.navItemSelected {
+  color:yellow;
+  font-weight: 600;
+}
+
+
+.navItemUnSelected {
+  color:white;
+  font-weight: 400;
+  text-decoration: underline !important;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a.navItemSelected{text-decoration: underline;}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -43,3 +62,5 @@ html {
   background: #999cff;
   font-family: "Times New Roman", Times, serif;
 }
+
+
