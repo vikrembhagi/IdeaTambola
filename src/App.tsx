@@ -3,6 +3,7 @@ import {IdeaDisplay} from "./Pages/IdeaDisplay"
 import Firebase from "firebase"
 import config from "./config"
 import {SampleIdea} from "./Data/Utils"
+import {NewIdea} from "./Pages/NewIdea"
 import {useEffect, useState} from "react"
 import {
   BrowserRouter as Router,
@@ -67,7 +68,7 @@ function App() {
     <div style={appHeader}>Idea Tambola</div>
       <Switch>
       <Route path="/newidea">
-            <div>NEW IDEA</div>
+            <NewIdea/>
           </Route>
 
       <Route path="/">
