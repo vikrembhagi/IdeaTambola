@@ -29,13 +29,13 @@
 }
 
 .navItemSelected {
-  color:yellow;
+  color: yellow;
   font-weight: 600;
 }
 
 
 .navItemUnSelected {
-  color:white;
+  color: white;
   font-weight: 400;
   text-decoration: underline !important;
 }
@@ -45,12 +45,15 @@ a {
   text-decoration: none;
 }
 
-a.navItemSelected{text-decoration: underline;}
+a.navItemSelected {
+  text-decoration: underline;
+}
 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -63,4 +66,6 @@ html {
   font-family: "Times New Roman", Times, serif;
 }
 
-
+input[type="submit"]:disabled {
+  background: #dddddd !important;
+}

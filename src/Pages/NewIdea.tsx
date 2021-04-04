@@ -1,14 +1,21 @@
-import { m } from "framer-motion"
+import { useState } from "react"
 
 export function NewIdea() {
+    //Styling for UI
+    const compContainer = {
+        display: "flex",
+        width: "100%",
+        maxWidth: "500px",
+        flexDirection: "column" as "column",
+        margin: "0 auto",
+        border: "2px solid black",
+    }
     const formContainer = {
         display: "flex",
         flexDirection: "column" as "column",
-        width: "500px",
+        width: "100%",
         justifyContent: "center" as "center",
-        border: "1px solid black",
         textAlign: "left" as "left",
-        margin: "0 auto"
     }
     const ideaInputStyle = {
         background: "none",
@@ -17,7 +24,6 @@ export function NewIdea() {
         height: "50px",
         fontSize: "24px"
     }
-
     const ideaDescriptionStyle = {
         background: "white",
         border: "none",
@@ -25,41 +31,50 @@ export function NewIdea() {
         width: "100%",
         fontSize: "16px"
     }
-
     const userInputColor = {
         color: "yellow"
     }
     const formLabel = {
         fontSize: "24px",
         color: "black",
-
     }
-
     const formRow = {
         marginTop: 32,
         marginBottom: 32,
         marginLeft: 32,
         marginRight: 32
     }
-
     const newIdeaToolbar = {
         display: "flex",
         flexDirection: "row" as "row",
         height: 60,
-        backgroundColor: "#6D6FAC"
+        backgroundColor: "#6D6FAC",
+        justifyContent: "left",
+        alignItems: "center",
+        paddingLeft: "32px",
+        paddingRight: "32px"
     }
+    const submitButton = {
+        fontSize: 16,
+        backgroundColor: "yellow",
+        padding: "8px"
+    }
+    //Component states
+    const [ideaUser, setIdeaUser] = useState("")
+    const [ideaWants, setIdeaWants] = useState("")
+    const [ideaPurpose, setIdeaPurpose] = useState("")
+    const [ideaAuthor, setIdeaAuthor] = useState("")
+    const [ideaDescription, setIdeaDescription] = useState("")
+    const [formReady, setFormReady] = useState(false)
 
-    const taskInputStyle = {}
-    const purposeInputStyle = {}
     return (
-        <div>
+        <div style={compContainer}>
             <div style={newIdeaToolbar}>
-                <div>New Idea</div>
                 <div>
-                    <button title="Save">Save</button>
+                    <input style={{ padding: "8px" }} type="text" name="author" onChange={e => setIdeaAuthor(e.target.value)} value={ideaAuthor} placeholder="Idea mastermind name" />
                 </div>
-                <div>
-                    <button title="Save">Save</button>
+                <div style={{ marginLeft: "auto" }}>
+                    <input style={submitButton} type="submit" disabled={formReady ? false : true} name="Submit Idea" />
                 </div>
             </div>
             <div style={formContainer}>
@@ -68,7 +83,7 @@ export function NewIdea() {
                         <label style={formLabel}>As a </label>
                     </div>
                     <div style={formRow}>
-                        <input style={{ ...ideaInputStyle, ...userInputColor }} type="text" name="name" placeholder="Describe your target user" />
+                        <input required={true} style={{ ...ideaInputStyle, ...userInputColor }} type="text" name="name" placeholder="Describe your target user" />
                     </div>
                     <div style={formRow}>
                         <label style={formLabel}>I want to </label>
