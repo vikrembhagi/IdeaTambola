@@ -74,7 +74,7 @@ export function NewIdea() {
                     <input style={{ padding: "8px" }} type="text" name="author" onChange={e => setIdeaAuthor(e.target.value)} value={ideaAuthor} placeholder="Idea mastermind name" />
                 </div>
                 <div style={{ marginLeft: "auto" }}>
-                    <input style={submitButton} type="submit" disabled={formReady ? false : true} name="Submit Idea" />
+                    <input style={submitButton} type="submit" name="Submit Idea" />
                 </div>
             </div>
             <div style={formContainer}>
@@ -83,19 +83,19 @@ export function NewIdea() {
                         <label style={formLabel}>As a </label>
                     </div>
                     <div style={formRow}>
-                        <input required={true} style={{ ...ideaInputStyle, ...userInputColor }} type="text" name="name" placeholder="Describe your target user" />
+                        <input required={true} style={{ ...ideaInputStyle, ...userInputColor }} type="text" name="user" onChange={e => setIdeaUser(e.target.value)} value={ideaUser} placeholder="Describe your target user" />
                     </div>
                     <div style={formRow}>
                         <label style={formLabel}>I want to </label>
                     </div>
                     <div style={formRow}>
-                        <input style={{ ...ideaInputStyle, ...userInputColor }} type="text" name="name" placeholder="Define target user action" />
+                        <input style={{ ...ideaInputStyle, ...userInputColor }} type="text" name="wants" onChange={e => setIdeaWants(e.target.value)} value={ideaWants} placeholder="Define target user action" />
                     </div>
                     <div style={formRow}>
                         <label style={formLabel}>so that I can </label>
                     </div>
                     <div style={formRow}>
-                        <input style={{ ...ideaInputStyle, ...userInputColor }} type="text" name="name" placeholder="Describe target user purpose" />
+                        <input style={{ ...ideaInputStyle, ...userInputColor }} type="text" name="purpose" onChange={e => setIdeaPurpose(e.target.value)} value={ideaPurpose} placeholder="Describe target user purpose" />
                     </div>
                     <div style={formRow}>
                         <textarea style={{ ...ideaDescriptionStyle }} name="name" placeholder="Describe your idea in more detail" />
