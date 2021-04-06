@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export function NewIdea() {
+export function NewIdea(props) {
     //Styling for UI
     const compContainer = {
         display: "flex",
@@ -67,6 +67,18 @@ export function NewIdea() {
     const [ideaDescription, setIdeaDescription] = useState("")
     const [formReady, setFormReady] = useState(false)
 
+    function formSubmit() {
+        let ideaFormData = {
+            content: {
+                user: ideaUser,
+                wants: ideaWants,
+                purpose: ideaPurpose,
+                author: ideaAuthor,
+                description: ideaDescription
+            }
+        }
+    }
+
     return (
         <div style={compContainer}>
             <div style={newIdeaToolbar}>
@@ -95,7 +107,7 @@ export function NewIdea() {
                         <label style={formLabel}>so that I can </label>
                     </div>
                     <div style={formRow}>
-                        <input style={{ ...ideaInputStyle, ...userInputColor }} type="text" name="purpose" onChange={e => setIdeaPurpose(e.target.value)} value={ideaPurpose} placeholder="Describe target user purpose" />
+                        <input style={{ ...ideaInputStyle, ...userInputColor }} type="text" name="purpose" onChange={e => { setIdeaPurpose(e.target.value) }} value={ideaPurpose} placeholder="Describe target user purpose" />
                     </div>
                     <div style={formRow}>
                         <textarea style={{ ...ideaDescriptionStyle }} name="name" placeholder="Describe your idea in more detail" />
