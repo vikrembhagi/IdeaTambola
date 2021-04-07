@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export function NewIdea(props) {
+export function NewIdea(props: { formSubmissionHook: (arg0: { content: { user: string; wants: string; purpose: string; author: string; description: string } }) => void }) {
     //Styling for UI
     const compContainer = {
         display: "flex",
@@ -77,6 +77,12 @@ export function NewIdea(props) {
                 description: ideaDescription
             }
         }
+        props.formSubmissionHook(ideaFormData)
+        setIdeaUser("")
+        setIdeaAuthor("")
+        setIdeaPurpose("")
+        setIdeaDescription("")
+        setIdeaWants("")
     }
 
     return (
@@ -86,7 +92,7 @@ export function NewIdea(props) {
                     <input style={{ padding: "8px" }} type="text" name="author" onChange={e => setIdeaAuthor(e.target.value)} value={ideaAuthor} placeholder="Idea mastermind name" />
                 </div>
                 <div style={{ marginLeft: "auto" }}>
-                    <input style={submitButton} type="submit" name="Submit Idea" />
+                    <input style={submitButton} onClick={formSubmit} type="submit" name="Submit Idea" />
                 </div>
             </div>
             <div style={formContainer}>
@@ -110,7 +116,7 @@ export function NewIdea(props) {
                         <input style={{ ...ideaInputStyle, ...userInputColor }} type="text" name="purpose" onChange={e => { setIdeaPurpose(e.target.value) }} value={ideaPurpose} placeholder="Describe target user purpose" />
                     </div>
                     <div style={formRow}>
-                        <textarea style={{ ...ideaDescriptionStyle }} name="name" placeholder="Describe your idea in more detail" />
+                        <textarea style={{ ...ideaDescriptionStyle }} name="description" onChange={e => { setIdeaDescription(e.target.value) }} value={ideaDescription} placeholder="Describe your idea in more detail" />
                     </div>
                 </form>
             </div>

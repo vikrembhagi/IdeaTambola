@@ -1,12 +1,16 @@
 import { IdeaCard } from "./IdeaCard";
 
-export function IdeaDeck(props: { ideaList: { content: {
-    user: string;
-    wants: string;
-    purpose: string;
-    description: string;
-    author: string;
-  }; }[]; }) {
+export function IdeaDeck(props: {
+  ideaList: {
+    content: {
+      user: string;
+      wants: string;
+      purpose: string;
+      description: string;
+      author: string;
+    };
+  }[];
+}) {
 
 
   const IdeaDeckStyle = {
@@ -17,22 +21,22 @@ export function IdeaDeck(props: { ideaList: { content: {
     height: "100%",
     width: "100%"
   };
-
   return (
+
     <div style={IdeaDeckStyle}>
-      {props.ideaList.map((item, index) => {
-        let animFactor = index;
-        if(animFactor>3){
+      {Object.keys(props.ideaList).map((key, index) => {
+        let animFactor = index
+        if (animFactor > 3) {
           animFactor = 2
         }
         return (
           <IdeaCard
-            content={item.content}
+            content={Object.values(props.ideaList)[index].content}
             stack={false}
             animationFactor={animFactor}
           />
         );
-      } )}
+      })}
     </div>
   );
 }

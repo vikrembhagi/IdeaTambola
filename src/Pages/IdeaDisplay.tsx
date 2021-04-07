@@ -10,24 +10,23 @@ function randomNumberInSpecificRange(max: number) {
 }
 
 export function IdeaDisplay(props: { ideaData: any; }) {
-  const ideaListData = props.ideaData
+  //const props.ideaData = props.ideaData
   const [galleryView, setGalleryView] = useState(false);
   const [randomIdeaIndex, setRandomIdeaIndex] = useState(
-    randomNumberInSpecificRange(ideaListData.length)
+    randomNumberInSpecificRange(Object.keys(props.ideaData).length)
   );
 
   //Change active view - Random || Deck
   function activeViewToggle(toggledButtonName: string) {
     if (toggledButtonName == "gallery") {
-      setGalleryView(!galleryView); 
+      setGalleryView(!galleryView);
     }
   }
 
   function newRandomIdea() {
-    let newRando = randomNumberInSpecificRange(ideaListData.length);
-
+    let newRando = randomNumberInSpecificRange(Object.keys(props.ideaData).length);
     while (newRando == randomIdeaIndex) {
-      newRando = randomNumberInSpecificRange(ideaListData.length);
+      newRando = randomNumberInSpecificRange(Object.keys(props.ideaData).length);
     }
     setRandomIdeaIndex(newRando);
   }
@@ -71,10 +70,17 @@ export function IdeaDisplay(props: { ideaData: any; }) {
     cursor: "pointer"
   };
 
+  function getRandomIdeaByIndex() {
+    //console.log(Object.keys(props.ideaData[randomIdeaIndex]))
+    const rando: any = Object.values(props.ideaData)[randomIdeaIndex]
+    //return Object.values(props.ideaData)[randomIdeaIndex]
+    return rando
+  }
+
   return (
     <div style={ideasContainer}>
       <div style={buttonHeader}>
-        <div style={ideaCount}>{ideaListData.length} amazing ideas in database</div>
+        <div style={ideaCount}>{Object.keys(props.ideaData).length} amazing ideas in database </div>
         <CustomButton
           text="Show All"
           id="gallery"
@@ -90,24 +96,30 @@ export function IdeaDisplay(props: { ideaData: any; }) {
           <div style={randomTriggerText} onClick={newRandomIdea}>
             Here's a random idea
           </div>
-          <IdeaCard
-            content={ideaListData[randomIdeaIndex].content}
-            animate={false}
-            stack={true}
-          />
         </div>
       )}
       {galleryView ? (
         <div style={cardStackContainer}>
-          <IdeaDeck ideaList={ideaListData} />
+          <IdeaDeck ideaList={props.ideaData} />
         </div>
       ) : (
-        ""
+        <IdeaCard
+          content={getRandomIdeaByIndex().content}
+          animate={false}
+          stack={true}
+        />
       )}
     </div>
   );
 }
 
-IdeaDisplay.defaultProps = {
- ideaData:IdeaData()
+
+type ideaObject = {
+  content: {
+    user: string;
+    wants: string;
+    purpose: string;
+    description: string;
+    author: string;
+  };
 };

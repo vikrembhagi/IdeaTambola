@@ -10,17 +10,17 @@ function random_rgb_value() {
 }
 
 export function IdeaCard(props: {
-    stack: boolean;
-    animate: boolean;
-    animationFactor: number;
-    content: {
-      user: string;
-      wants: string;
-      purpose: string;
-      description: string;
-      author: string;
-    };
-  }) {
+  stack: boolean;
+  animate: boolean;
+  animationFactor: number;
+  content: {
+    user: string;
+    wants: string;
+    purpose: string;
+    description: string;
+    author: string;
+  };
+}) {
   const randomRedVal = random_rgb_value();
   const randomBlueVal = random_rgb_value();
   const randomGreenVal = random_rgb_value();
@@ -37,8 +37,9 @@ export function IdeaCard(props: {
     borderRadius: "5px",
     border: "2px black solid",
     position: "relative" as "relative",
-    marginTop: "32px",
-    boxShadow: props.stack ? "8px 8px 8px black" : "none"
+    boxShadow: props.stack ? "8px 8px 8px black" : "none",
+    margin: "0 auto",
+    marginTop: "32px"
   };
 
   const CardTop = {
@@ -149,5 +150,5 @@ IdeaCard.defaultProps = {
   },
   animate: true,
   stack: false,
-  animationFactor:1
+  animationFactor: 1
 };

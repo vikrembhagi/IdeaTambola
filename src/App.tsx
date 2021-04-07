@@ -64,27 +64,27 @@ function App() {
   function readIdeaData() {
     Firebase
       .database()
-      .ref("/ideas")
+      .ref("/")
       .on("value", snapshot => {
         if (snapshot && snapshot.exists()) {
           setMasterIdeaList(snapshot.val())
-          console.log(masterIdeaList)
           setLoadingIdeas(false)
         }
       })
+
   }
 
   function writeIdeaData() {
     Firebase.database()
-      .ref("/ideas")
+      .ref("/")
       .set(sampleIdeaData)
   };
 
 
-  function addIdeaToList() {
+  function addIdeaToList(newIdeaForList: any) {
     Firebase.database()
-      .ref("/ideas").push()
-      .set(sampleIdeaData)
+      .ref("/").push()
+      .set(newIdeaForList)
     console.log("DATA SAVED")
   };
 
@@ -101,10 +101,9 @@ function App() {
     setActivePage(activePath)
   }
 
-  function formSubmission(ideaForm) {
-
+  function formSubmission(ideaForm: any) {
+    addIdeaToList(ideaForm)
     console.log(ideaForm)
-
   }
 
   //Component stuff 
@@ -131,10 +130,9 @@ function App() {
         </div>
         <Switch>
           <Route path="/newidea">
-            <NewIdea />
+            <NewIdea formSubmissionHook={formSubmission} />
           </Route>
           <Route path="/">
-
             {loadingIdeas ? <div /> : <IdeaDisplay ideaData={masterIdeaList} />}
           </Route>
         </Switch>
