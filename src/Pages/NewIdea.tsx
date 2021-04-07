@@ -1,7 +1,9 @@
 import { useState } from "react"
+import { useHistory } from 'react-router-dom';
 
 export function NewIdea(props: { formSubmissionHook: (arg0: { content: { user: string; wants: string; purpose: string; author: string; description: string } }) => void }) {
     //Styling for UI
+    let history = useHistory();
     const compContainer = {
         display: "flex",
         width: "100%",
@@ -49,7 +51,7 @@ export function NewIdea(props: { formSubmissionHook: (arg0: { content: { user: s
         flexDirection: "row" as "row",
         height: 60,
         backgroundColor: "#6D6FAC",
-        justifyContent: "left",
+        justifyContent: "center",
         alignItems: "center",
         paddingLeft: "32px",
         paddingRight: "32px"
@@ -83,16 +85,14 @@ export function NewIdea(props: { formSubmissionHook: (arg0: { content: { user: s
         setIdeaPurpose("")
         setIdeaDescription("")
         setIdeaWants("")
+        history.push('/')
     }
 
     return (
         <div style={compContainer}>
             <div style={newIdeaToolbar}>
-                <div>
+                <div style={{ marginRight: "auto" }}>
                     <input style={{ padding: "8px" }} type="text" name="author" onChange={e => setIdeaAuthor(e.target.value)} value={ideaAuthor} placeholder="Idea mastermind name" />
-                </div>
-                <div style={{ marginLeft: "auto" }}>
-                    <input style={submitButton} onClick={formSubmit} type="submit" name="Submit Idea" />
                 </div>
             </div>
             <div style={formContainer}>
@@ -119,6 +119,12 @@ export function NewIdea(props: { formSubmissionHook: (arg0: { content: { user: s
                         <textarea style={{ ...ideaDescriptionStyle }} name="description" onChange={e => { setIdeaDescription(e.target.value) }} value={ideaDescription} placeholder="Describe your idea in more detail" />
                     </div>
                 </form>
+
+            </div>
+            <div style={newIdeaToolbar}>
+                <div style={{ marginRight: "auto" }}>
+                    <input style={submitButton} onClick={formSubmit} type="submit" name="Submit Idea" />
+                </div>
             </div>
         </div>
     )
